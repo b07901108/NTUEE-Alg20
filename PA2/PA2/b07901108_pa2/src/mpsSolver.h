@@ -22,13 +22,20 @@ public:
 	MpsSolver();
     bool readInput(const string&);
     bool writeOutput(const string&);
+    bool initMatrices(uint& size);
     void solve();
+    uint mpsSolve(int left, int right);
+    void traceSolution(int left, int right);
     void printChord();
 	void printSolution();
+    void printMatrices() const;
 private:
+    uint _pointCnt;
     vector<int> _chords;
 	vector<int> _chords2;
-    int _mps;
+    uint _mps;
     vector<int> _ansChords;
+    vector<vector<int>> _solutions;
+    vector<vector<int>> _traces;
 };
 
