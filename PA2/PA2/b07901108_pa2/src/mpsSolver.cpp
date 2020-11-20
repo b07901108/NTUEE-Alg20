@@ -132,17 +132,14 @@ MpsSolver::traceSolution(int left, int right)
 	switch (cond)
 	{
 	case 1:
-		cout << "1\n";
 		traceSolution(left+1, right);
 		break;
 	case 2:
-		cout << "2\n";
 		_ansChords.push_back(left);
 		traceSolution(left+1, chord_right-1);
 		traceSolution(chord_right+1, right);
 		break;
 	case 3:
-		cout << "3\n";
 		_ansChords.push_back(left);
 		traceSolution(left+1, right-1);
 		break;
