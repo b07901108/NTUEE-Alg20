@@ -92,10 +92,10 @@ MpsSolver::solve()
 	traceSolution(0, _pointCnt-1);
 }
 
-uint
+ushort
 MpsSolver::mpsSolve(int left, int right)
 {
-	uint solution = 0;
+	ushort solution = 0;
 	if (left >= right) { return 0; }
 	int rev_right = _pointCnt - right - 1;
 	// Memoize

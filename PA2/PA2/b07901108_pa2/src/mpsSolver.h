@@ -24,7 +24,7 @@ public:
     bool writeOutput(const string&);
     bool initMatrices(uint& size);
     void solve();
-    uint mpsSolve(int left, int right);
+    ushort mpsSolve(int left, int right);
     void traceSolution(int left, int right);
     void printChord();
 	void printSolution();
@@ -35,6 +35,6 @@ private:
 	vector<uint> _chords2;
     uint _mps;
     vector<uint> _ansChords;
-    vector<vector<uint>> _solutions;
+    vector<vector<ushort>> _solutions;
 };
 
