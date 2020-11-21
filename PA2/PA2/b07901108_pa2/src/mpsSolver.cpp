@@ -22,7 +22,7 @@ MpsSolver::readInput(const string& fileName)
     }
 
 	int chordCnt;
-	int left, right;
+	uint left, right;
 
 	// Read points
 	ifs >> _pointCnt;
@@ -30,9 +30,15 @@ MpsSolver::readInput(const string& fileName)
 
 	chordCnt = _pointCnt / 2;
 	_chords2.resize(_pointCnt);
+	uint temp;
 	for (int i=0; i<chordCnt; ++i) {
 		// Read endpoints
 		ifs >> left >> right;
+		if (left > right) {
+			temp = right;
+			right = left;
+			left = temp;
+		}
 		_chords.push_back(left);
 		_chords2[left] = right;
 	}

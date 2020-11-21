@@ -31,18 +31,18 @@ int main(int argc, char **argv)
 	string inputFile = argv[1];
     string outputFile = argv[2];
     MpsSolver * mpsSolver = new MpsSolver();
+    tmusg.periodStart();
     mpsSolver->readInput(inputFile);
+
     #ifdef DEBUG
     mpsSolver.printChord();
     #endif
-    tmusg.periodStart();
     mpsSolver->solve();
-    tmusg.getPeriodUsage(stat);
-    cout << "The total CPU time: " << (stat.uTime + stat.sTime) / 1000.0 << "ms\n";
-    cout << "memory: " << stat.vmPeak << "KB\n"; // print peak memory
-    
     //mpsSolver.printMatrices();
     //mpsSolver.printSolution();
     mpsSolver->writeOutput(outputFile);
+    tmusg.getPeriodUsage(stat);
+    cout << "The total CPU time: " << (stat.uTime + stat.sTime) / 1000.0 << "ms\n";
+    cout << "memory: " << stat.vmPeak << "KB\n"; // print peak memory
 	return 0;
 }

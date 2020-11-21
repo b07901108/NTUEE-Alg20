@@ -31,11 +31,11 @@ public:
     void printMatrices() const;
 private:
     uint _pointCnt;
-    vector<int> _chords;
-	vector<int> _chords2;
+    vector<uint> _chords;
+	vector<uint> _chords2;
     uint _mps;
-    vector<int> _ansChords;
-    vector<vector<int>> _solutions;
-    vector<vector<int>> _traces;
+    vector<uint> _ansChords;
+    vector<vector<uint>> _solutions;
+    vector<vector<uint>> _traces;
 };
 
