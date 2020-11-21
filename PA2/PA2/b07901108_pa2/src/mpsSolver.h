@@ -36,6 +36,5 @@ private:
     uint _mps;
     vector<uint> _ansChords;
     vector<vector<uint>> _solutions;
-    vector<vector<uint>> _traces;
 };
 

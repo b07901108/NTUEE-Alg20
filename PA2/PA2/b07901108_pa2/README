@@ -1,0 +1,7 @@
+# PA2 README
+Author: Chien-Kai Ma
+Student ID: b07901108
+Course ID: Alg20126
+
+How to compile: make
+How to execute: ./bin/mps <input_file> <output_file>

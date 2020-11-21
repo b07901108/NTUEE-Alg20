@@ -68,10 +68,8 @@ bool
 MpsSolver::initMatrices(uint& pointCnt)
 {
 	_solutions.resize(pointCnt + 1);
-	_traces.resize(pointCnt + 1);
 	for (uint i=0; i<pointCnt; ++i) {
 		_solutions[i].resize(pointCnt - i);
-		_traces[i].resize(pointCnt - i);
 	}
 	return true;
 }
@@ -107,7 +105,6 @@ MpsSolver::mpsSolve(int left, int right)
 	if (chord_right > right || chord_right == 0) {
 		solution = mpsSolve(left+1, right);
 		_solutions[left][rev_right] = solution;
-		_traces[left][rev_right] = 1;
 		return solution;
 	} else if (chord_right < right) {
 		// If chord in optimal solution
@@ -117,13 +114,10 @@ MpsSolver::mpsSolve(int left, int right)
 		solution = (in_optimal > not_in_optimal)
 					? in_optimal : not_in_optimal;
 		_solutions[left][rev_right] = solution;
-		_traces[left][rev_right] = (in_optimal > not_in_optimal)
-									? 2 : 1;
 		return solution;
 	} else {
 		solution = mpsSolve(left+1, right-1) + 1;
 		_solutions[left][rev_right] = solution;
-		_traces[left][rev_right] = 3;
 		return solution;
 	}	
 }
@@ -134,23 +128,22 @@ MpsSolver::traceSolution(int left, int right)
 	if (left >= right) { return; }
 	int rev_right = _pointCnt - right - 1;
 	int chord_right = _chords2[left];
-	int cond = _traces[left][rev_right];
-	switch (cond)
-	{
-	case 1:
+	if (chord_right > right || chord_right == 0) {
 		traceSolution(left+1, right);
-		break;
-	case 2:
-		_ansChords.push_back(left);
-		traceSolution(left+1, chord_right-1);
-		traceSolution(chord_right+1, right);
-		break;
-	case 3:
+	} else if (chord_right < right) {
+		int in_optimal = mpsSolve(left+1, chord_right-1) +
+						mpsSolve(chord_right+1, right) + 1;
+		int not_in_optimal = mpsSolve(left+1, right);
+		if (in_optimal > not_in_optimal) {
+			_ansChords.push_back(left);
+			traceSolution(left+1, chord_right-1);
+			traceSolution(chord_right+1, right);
+		} else {
+			traceSolution(left+1, right);
+		}
+	} else {
 		_ansChords.push_back(left);
 		traceSolution(left+1, right-1);
-		break;
-	default:
-		break;
 	}
 }
 
@@ -167,13 +160,6 @@ void
 MpsSolver::printMatrices() const
 {
 	for (auto& v : _solutions)
-	{
-		for (auto& w : v) {
-			cout << w << " ";
-		}
-		cout << "\n";
-	}
-	for (auto& v : _traces)
 	{
 		for (auto& w : v) {
 			cout << w << " ";
