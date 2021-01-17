@@ -26,14 +26,16 @@ public:
     bool writeOutput(const string&);
     // TODO: Solution
     void solve();
+    void kruskal();
+    void posSelect();
+    void align();
     void identifyCycles();
-    ushort cbSolve(int left, int right);
-    void traceSolution(int left, int right);
+    void checkSol();
     void printCycle()       const; // TODO
 private:
-    Graph *          _graph;
-    uint             _cb; // Total weight of removed edges
-    vector<Edge>     _ansEdges;
+    Graph *           _graph;
+    int               _cb; // Total weight of removed edges
+    vector<Edge>      _ansEdges;
 };
 
 // TODO: Build disjoint sets?

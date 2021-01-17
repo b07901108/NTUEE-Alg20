@@ -15,6 +15,10 @@
 
 using namespace std;
 
+bool CompareWeight(Edge e1, Edge e2) {
+    return e1._weight > e2._weight;
+};
+
 void help_message() {
     cout << "usage: cb <input_file> <output_file>" << endl;
 }
@@ -33,6 +37,7 @@ int main(int argc, char **argv)
     CbSolver * cbSolver = new CbSolver();
     cbSolver->readInput(inputFile);
     cbSolver->solve();
+    //cbSolver->checkSol();
     cbSolver->writeOutput(outputFile);
     tmusg.getPeriodUsage(stat);
     cout << "The total CPU time: " << (stat.uTime + stat.sTime) / 1000.0 << "ms\n";

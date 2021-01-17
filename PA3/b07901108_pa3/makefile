@@ -18,7 +18,7 @@ bin/cb	: cbSolver.o main.o lib
 			$(CC) $(OPTFLAGS) cbSolver.o main.o -ltm_usage -Llib -o bin/cb
 main.o 	: src/main.cpp lib/tm_usage.h
 			$(CC) $(CFLAGS) $< -Ilib -o $@
-cbSolver.o	: src/cbSolver.cpp src/cbSolver.h src/graphDef.h
+cbSolver.o	: src/cbSolver.cpp src/cbSolver.h src/graphDef.h src/dset.h
 			$(CC) $(CFLAGS) $(OPTFLAGS) $< -o $@
 lib: lib/libtm_usage.a
 

@@ -1,0 +1,11 @@
+# PA3 README
+Author: Chien-Kai Ma
+Student ID: b07901108
+Course ID: Alg20126
+
+How to compile: make
+How to execute: ./bin/cb <input_file> <output_file>
+
+Files other than src/: utilities for time usage.
+Thanks Wenzel Jakob for his disjoint set implementation.
+Source: https://github.com/wjakob/dset/blob/master/dset.h
