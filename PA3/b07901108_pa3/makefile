@@ -1,6 +1,6 @@
 # CC and CFLAGS are varilables
 CC = g++
-CFLAGS = -c
+CFLAGS = -c -std=c++11
 AR = ar
 ARFLAGS = rcv
 # -c option ask g++ to compile the source files, but do not link.
